@@ -20,4 +20,7 @@ export class StudentsDataService {
   addStudent(student:Student,imageFile:any){
     return null;
   }
+  findStudent(search:string){
+    return null;
+  }
 }

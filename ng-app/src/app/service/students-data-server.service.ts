@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Student} from '../students/student';
-import {Http, Headers, Response, RequestOptions} from '@angular/http';
+import {Http, Headers, Response, RequestOptions,URLSearchParams} from '@angular/http';
 import {Observable} from "rxjs/Rx";
 import {AuthenticationService} from './authentication.service';
 
@@ -14,7 +14,19 @@ export class StudentsDataServerService {
     'Content-type': 'application/json',
     'Authorization': 'Bearer ' + this.authenticationService.getToken()
   });
+  findStudent(search:string){
+    let student: Student;
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('search', search);
+    let headers=new Headers({
+      'Content-type':'application/json',
+      'Authorization':'Bearer '+this.authenticationService.getToken()
+    });
+    return this.http.get('http://localhost:8080/students/',{headers:headers,search:
+    params})
+      .map(res => res.json());
 
+  }
   getStudentsData():Observable<Student[]> {
 
     return this.http.get('http://localhost:8080/student',({headers:this.headers}))
@@ -90,7 +102,6 @@ export class StudentsDataServerService {
           })
       })
 
-
-
   }
+
 }
