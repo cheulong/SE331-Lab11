@@ -1,7 +1,9 @@
 package camt.cbsd.entity.security;
 
+import camt.cbsd.entity.Student;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -11,12 +13,14 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Data
 @Table(name = "USER")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-
+    @OneToOne
+    Student student;
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")

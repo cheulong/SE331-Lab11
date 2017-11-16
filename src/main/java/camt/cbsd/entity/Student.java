@@ -1,5 +1,6 @@
 package camt.cbsd.entity;
 
+import camt.cbsd.entity.security.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.*;
@@ -32,6 +33,8 @@ public class Student {
     boolean feature;
     int penAmount;
     String description;
+    @OneToOne(mappedBy = "student")
+    User user;
     @ManyToMany
     List<Course> enrolledCourse = new ArrayList<>();
 
