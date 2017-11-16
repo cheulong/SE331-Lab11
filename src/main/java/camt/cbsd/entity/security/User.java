@@ -1,8 +1,10 @@
 package camt.cbsd.entity.security;
 
+import camt.cbsd.config.json.View;
 import camt.cbsd.entity.Student;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,6 +40,7 @@ public class User {
     @Column(name = "PASSWORD", length = 100)
     @NotNull
     @Size(min = 4, max = 100)
+
     private String password;
 
     @Column(name = "FIRSTNAME", length = 50)
@@ -63,7 +66,8 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
     private Date lastPasswordResetDate;
-
+    @JsonView(View.Login.class)
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "USER_AUTHORITY",
@@ -126,6 +130,8 @@ public class User {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+
+
     @JsonManagedReference
     public List<Authority> getAuthorities() {
         return authorities;
