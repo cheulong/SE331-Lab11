@@ -1,6 +1,8 @@
 package camt.cbsd.entity.security;
 
 import camt.cbsd.entity.Student;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 public class User {
     @OneToOne
+    @JsonBackReference
     Student student;
     @Id
     @Column(name = "ID")
@@ -123,7 +126,7 @@ public class User {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
+    @JsonManagedReference
     public List<Authority> getAuthorities() {
         return authorities;
     }

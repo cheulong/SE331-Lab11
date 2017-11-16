@@ -15,8 +15,8 @@ export class StudentsDataServerService {
     'Authorization': 'Bearer ' + this.authenticationService.getToken()
   });
 
-  getStudentsData() {
-    let studentArray: Student[];
+  getStudentsData():Observable<Student[]> {
+
     return this.http.get('http://localhost:8080/student',({headers:this.headers}))
       .map(res => res.json());
 

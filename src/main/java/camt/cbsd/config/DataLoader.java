@@ -99,13 +99,13 @@ public class DataLoader implements ApplicationRunner{
         student3.addCourse(course3);
 
         securitySetup();
-
         student1.setUser(user1);
         user1.setStudent(student1);
         student2.setUser(user2);
         user2.setStudent(student2);
         student3.setUser(user3);
         user3.setStudent(student3);
+
 
     }
     private void securitySetup() {

@@ -3,6 +3,7 @@ package camt.cbsd.dao;
 import camt.cbsd.entity.Student;
 import camt.cbsd.repository.StudentRepository;
 import jersey.repackaged.com.google.common.collect.Lists;
+import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
@@ -41,5 +42,9 @@ public class StudentDaoDBImpl implements StudentDao {
     @Override
     public Integer size() {
         return (int)studentRepository.count();
+    }
+    @Override
+    public Student findByUsername(String username){
+        return studentRepository.findByUserUsername(username);
     }
 }
