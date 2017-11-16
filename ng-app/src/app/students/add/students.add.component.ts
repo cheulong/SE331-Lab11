@@ -10,12 +10,21 @@ import {StudentsDataService} from "../../service/students-data.service";
 })
 export class StudentsAddComponent {
   student: any = {};
-
+  students: Student[];
   constructor(private studentDataService: StudentsDataService, private router: Router) {
   };
 
   ngOnInit() {
-    this.student = new Student();
+
+    this.studentDataService.getStudentsData()
+    //  .subscribe(students => this.students = students);
+      .subscribe(students=>this.students=students,
+        (error)=>{
+          if(error.status===401){
+            this.router.navigate(['login'],{queryParams:{source:'student'}});
+          }
+        });
+    this.student = new Student();this.student = new Student();
   }
 
   upQuantity(student: Student) {

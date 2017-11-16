@@ -21,7 +21,7 @@ export class StudentsComponent {
       .subscribe(students=>this.students=students,
         (error)=>{
         if(error.status===401){
-          this.router.navigate(['login']);
+          this.router.navigate(['login'],{queryParams:{source:'student'}});
         }
         });
   }
