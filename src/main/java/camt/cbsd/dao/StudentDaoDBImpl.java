@@ -49,7 +49,7 @@ public class StudentDaoDBImpl implements StudentDao {
     }
     @Override
     public List<Student>getStudents(String searchText){
-       // return studentRepository.findByNameIgnoreCaseContaining(searchText);
+      // return studentRepository.findByNameIgnoreCaseContaining(searchText);
         return studentRepository.findByNameIgnoreCaseContainingOrSurnameIgnoreCaseContaining(searchText, searchText);
     }
 }
